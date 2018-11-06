@@ -1,8 +1,27 @@
 import React from 'react'
 
 class PostItem extends React.Component {
+
+  getPostDate = () => {
+    let elapsed = (new Date().getTime()) - ((new Date(this.props.post.created * 1000)).getTime())
+
+    if (elapsed < 60000) {
+      return "Just Now"
+    } else if (elapsed >= 60000 && elapsed < 3600000) {
+      return `${parseInt(elapsed/60000)} minutes ago`
+
+    } else if (elapsed >= 3600000 && elapsed < 86400000) {
+      return `${parseInt(elapsed/3600000)} hours ago`
+    } else if (elapsed >= 86400000) {
+      return `${parseInt(elapsed/86400000)} days ago`
+    }
+
+
+  }
+
   render() {
     let {post} = this.props
+
 
     return (
       <div className="post-item-wrapper">
@@ -14,6 +33,15 @@ class PostItem extends React.Component {
           <div className="post-item-text">
             <div className="post-item-title">
               {this.props.post.title}
+            </div>
+
+            <div className="post-item-metadata">
+              <span className="post-item-author">
+                {post.author}
+              </span>
+              <span className="post-item-time">
+                {this.getPostDate()}
+              </span>
             </div>
           </div>
         </div>
