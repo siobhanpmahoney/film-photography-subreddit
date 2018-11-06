@@ -1,32 +1,86 @@
+body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
 .App {
   text-align: center;
+  position: relative;
+  width: 100vw;
+  height: 100%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.post-container {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  flex: 1 1 auto;
+  flex-flow: column wrap;
+  /* margin: 0 16px; */
+}
+
+.post-list {
+  width: 500px;
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: column wrap;
+  position: relative;
+  align-content: center;
+  align-self: center;
+}
+
+.post-item-wrapper {
+  margin: 16px 0px;
+  padding: 16px 0px;
+  position: relative;
+  /* display: block; */
+  width: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: column wrap;
+  background: none;
+}
+
+.post-item-content {
+  position: relative;
+  width: 100%;
+  background: none;
+}
+
+
+.post-item-image {
+  /* height: 100%; */
+  max-width: 500px;
+  text-align: center;
+  background-color: black;
+  z-index: 1;
+  position: relative;
+  display: flex;
+  align-self:center;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  justify-content:center;
+  /* width: 100%; */
+
+
+  /* height: 350px; */
+
+  /* min-height: 350px; */
 }
 
-.App-link {
-  color: #61dafb;
+.img-element {
+  height: 100%;
+  max-height: 350px;
+  /* width: 100%; */
+  max-width: 500px;
+    align-items: center;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.post-item-title {
+  font-family: "Arvo";
+  font-size: 18px;
+  line-height: 24px;
+  padding: 16px 0px;
+  margin: 16px 0px;
 }
