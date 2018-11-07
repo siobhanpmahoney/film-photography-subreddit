@@ -34,12 +34,12 @@ class PostItem extends React.Component {
   selectIcon = () => {
       if (!!this.props.favorited) {
           if (this.props.location.pathname.slice(1) == "feed") {
-            return "fas fa-heart favorited"
+            return "fas fa-heart favorited icon"
           } else {
-            return "far fa-trash-alt"
+            return "far fa-trash-alt icon"
           }
       } else {
-        return "fas fa-heart nonfavorite"
+        return "fas fa-heart nonfavorite icon"
       }
   }
 
