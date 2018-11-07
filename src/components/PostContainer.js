@@ -56,20 +56,16 @@ class PostContainer extends React.Component {
     let favoritesState = this.state.favorites.splice(0) || []
     let feedState = this.state.feed.splice(0) || []
 
-    let selectedPost = feedState.find((p) => p.id == post_id)
-    console.log("selectedPost: ", selectedPost)
-    let postIdx = feedState.indexOf(selectedPost)
-    console.log("feedState[postIdx]: ", feedState[postIdx])
-    let favIdx = favoritesState.indexOf(favoritesState.find((p) => p.id == post_id))
 
     if (!favoriteListState[post_id]) {
+      let selectedPost = feedState.find((p) => p.id == post_id)
       favoritesState.unshift(selectedPost)
       favoriteListState[post_id] = true
 
     } else {
+      let favIdx = favoritesState.indexOf(favoritesState.find((p) => p.id == post_id))
       favoritesState = [...favoritesState.slice(0, favIdx),...favoritesState.slice(favIdx + 1)]
       delete favoriteListState[post_id]
-      console.log(favoriteListState)
     }
     this.setState({
       feed: feedState,
