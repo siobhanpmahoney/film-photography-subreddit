@@ -5,7 +5,7 @@ const PostList = (props) => {
   return (
     <div className="post-list">
       {props.posts.map((p) => {
-        return <PostItem post={p} key={p.id} />
+        return <PostItem onFavoritePost = {props.onFavoritePost} post={p} key={p.id} />
       })}
     </div>
   )

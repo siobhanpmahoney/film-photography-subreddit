@@ -9,14 +9,19 @@ class PostItem extends React.Component {
       return "Just Now"
     } else if (elapsed >= 60000 && elapsed < 3600000) {
       return `${parseInt(elapsed/60000)} minutes ago`
-
     } else if (elapsed >= 3600000 && elapsed < 86400000) {
       return `${parseInt(elapsed/3600000)} hours ago`
     } else if (elapsed >= 86400000) {
       return `${parseInt(elapsed/86400000)} days ago`
     }
+  }
 
-
+  dynamicIcon = () => {
+    if (!!this.props.post.favorited) {
+      return <i class="fas fa-heart favorited" id={this.props.post.id}></i>
+    } else {
+      return <i class="fas fa-heart nonfavorite" id={this.props.post.id} onClick={this.props.onFavoritePost}></i>
+    }
   }
 
   render() {
@@ -25,8 +30,10 @@ class PostItem extends React.Component {
 
     return (
       <div className="post-item-wrapper">
+
         <div className="post-item-content">
           <div className="post-item-image">
+            {this.dynamicIcon()}
             <img className="img-element" src={this.props.post.url} alt="Img" />
           </div>
 
@@ -37,7 +44,7 @@ class PostItem extends React.Component {
 
             <div className="post-item-metadata">
               <span className="post-item-author">
-                {post.author}
+                {post.author} |
               </span>
               <span className="post-item-time">
                 {this.getPostDate()}
