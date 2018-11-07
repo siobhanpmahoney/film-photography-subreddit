@@ -1,6 +1,7 @@
 import React from 'react'
 import PostList from './PostList'
 import ls from 'local-storage'
+import {withRouter} from 'react-router'
 
 
 class PostContainer extends React.Component {
@@ -21,6 +22,18 @@ class PostContainer extends React.Component {
       favorites: ls.get("favorites") || []
     }, this.fetchPosts)
   }
+
+  componentDidUpdate(prevProps) {
+  if (prevProps.location.pathname !== this.props.location.pathname) {
+    this.updateList()
+  }
+}
+
+updateList() {
+  this.setState({
+    items: []
+  }, () => this.fetchPosts())
+}
 
   fetchPosts = () => {
     this.props.fetchFn()
@@ -51,11 +64,7 @@ class PostContainer extends React.Component {
     selectedPost.favorited = true
     favoritesState.unshift(selectedPost)
 
-    feedState = [
-      ...feedState.slice(0, postIdx),
-      selectedPost,
-      ...feedState.slice(postIdx+1)
-    ]
+    feedState = [...feedState.slice(0, postIdx), selectedPost, ...feedState.slice(postIdx+1)]
 
     favoriteListState[post_id] = true
 
@@ -76,9 +85,6 @@ class PostContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.feed)
-    let ss = this.state
-    console.log("state: ", this.state)
     return (
       <div className="post-container">
         <PostList posts = {this.state.feed} onFavoritePost = {this.onFavoritePost} favoriteList = {this.state.favoriteList} />
@@ -87,4 +93,4 @@ class PostContainer extends React.Component {
   }
 }
 
-export default PostContainer
+export default withRouter(PostContainer)
