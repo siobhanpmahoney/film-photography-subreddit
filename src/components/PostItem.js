@@ -17,10 +17,16 @@ class PostItem extends React.Component {
   }
 
   dynamicIcon = () => {
-    if (!!this.props.post.favorited) {
-      return <i class="fas fa-heart favorited" id={this.props.post.id}></i>
+    if (!!this.props.favorited) {
+      return <i class="fas fa-heart favorited" id={this.props.post.id} onClick={this.props.onToggleFavoriteState}></i>
     } else {
-      return <i class="fas fa-heart nonfavorite" id={this.props.post.id} onClick={this.props.onFavoritePost}></i>
+      return <i class="fas fa-heart nonfavorite" id={this.props.post.id} onClick={this.props.onToggleFavoriteState}></i>
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.favorited != this.props.favorited) {
+      this.dynamicIcon()
     }
   }
 
