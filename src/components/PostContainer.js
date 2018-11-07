@@ -16,16 +16,26 @@ class PostContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchPosts()
+    this.setState({
+      favoriteList: ls.get("favoriteList") || {},
+      favorites: ls.get("favorites") || []
+    }, this.fetchPosts)
   }
 
   fetchPosts = () => {
     this.props.fetchFn()
-    .then(json => this.setState({
-      feed: json,
-      favoriteList: ls.get("favoriteList") || {},
-      favorites: ls.get("favorites") || []
-    }))
+    .then(json => {
+
+      let feedsState = json.map((item) => {
+        let p = item
+        p["favorited"] = !!this.state.favoriteList[item.id]
+        return p
+      })
+
+      this.setState({
+        feed: feedsState
+      })
+    })
   }
 
   onFavoritePost = (event) => {
@@ -40,11 +50,14 @@ class PostContainer extends React.Component {
 
     selectedPost.favorited = true
     favoritesState.unshift(selectedPost)
+
     feedState = [
       ...feedState.slice(0, postIdx),
       selectedPost,
       ...feedState.slice(postIdx+1)
     ]
+
+    favoriteListState[post_id] = true
 
     this.setState({
       feed: feedState,
@@ -65,10 +78,10 @@ class PostContainer extends React.Component {
   render() {
     console.log(this.state.feed)
     let ss = this.state
-    debugger
+    console.log("state: ", this.state)
     return (
       <div className="post-container">
-        <PostList posts = {this.state.feed} onFavoritePost = {this.onFavoritePost} />
+        <PostList posts = {this.state.feed} onFavoritePost = {this.onFavoritePost} favoriteList = {this.state.favoriteList} />
       </div>
     )
   }

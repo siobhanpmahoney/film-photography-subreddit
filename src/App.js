@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Switch, Route, Redirect } from 'react-router'
 import './App.css';
-import {fetchFeed} from './posts'
+import {fetchFeed, fetchFavorites} from './posts'
 import PostContainer from './components/PostContainer'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <PostContainer fetchFn={fetchFeed} />
+
+        <Switch>
+
+
+          <Route exact path='/feed' render={() => {
+              return <PostContainer fetchFn={fetchFeed} />
+            }}
+            />
+
+          <Route exact path='/favorites' render={() => {
+              return <PostContainer fetchFn={fetchFavorites} />
+            }}
+            />
+
+          <Redirect to='/feed' />
+
+        </Switch>
+
+
       </div>
     );
   }
