@@ -1,4 +1,5 @@
 import React from 'react'
+import {withRouter} from 'react-router'
 
 class PostItem extends React.Component {
 
@@ -17,12 +18,35 @@ class PostItem extends React.Component {
   }
 
   dynamicIcon = () => {
-    if (!!this.props.favorited) {
-      return <i class="fas fa-heart favorited" id={this.props.post.id} onClick={this.props.onToggleFavoriteState}></i>
-    } else {
-      return <i class="fas fa-heart nonfavorite" id={this.props.post.id} onClick={this.props.onToggleFavoriteState}></i>
-    }
+
+    return <i class={this.selectIcon()} id={this.props.post.id}  onClick={this.props.onToggleFavoriteState} />
+    // if (!!this.props.favorited) {
+    //   if (this.props.location.pathname.slice(1) == "feed") {
+    //     return <i class= ></i>
+    //     } else {
+    //       return <i class=></i>
+    //     }
+    // } else {
+    //   return <i class="" id={this.props.post.id} onClick={this.props.onToggleFavoriteState}></i>
+    // }
   }
+
+  selectIcon = () => {
+      if (!!this.props.favorited) {
+          if (this.props.location.pathname.slice(1) == "feed") {
+            return "fas fa-heart favorited"
+          } else {
+            return "far fa-trash-alt"
+          }
+      } else {
+        return "fas fa-heart nonfavorite"
+      }
+  }
+
+
+
+
+
 
   componentDidUpdate(prevProps) {
     if (prevProps.favorited != this.props.favorited) {
@@ -64,4 +88,4 @@ class PostItem extends React.Component {
   }
 }
 
-export default PostItem
+export default withRouter(PostItem)
