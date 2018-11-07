@@ -51,11 +51,9 @@ class PostContainer extends React.Component {
 
   onToggleFavoriteState = (event) => {
     let post_id = event.target.id
-
     let favoriteListState = Object.assign({}, this.state.favoriteList)
     let favoritesState = this.state.favorites.splice(0) || []
     let feedState = this.state.feed.splice(0) || []
-
 
     if (!favoriteListState[post_id]) {
       let selectedPost = feedState.find((p) => p.id == post_id)
@@ -75,8 +73,6 @@ class PostContainer extends React.Component {
     ls.set('favorites', favoritesState)
     ls.set('favoriteList', favoriteListState)
   }
-
-
 
 
   render() {
