@@ -3,6 +3,12 @@ import {withRouter} from 'react-router'
 
 class PostItem extends React.Component {
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.favorited != this.props.favorited) {
+      this.dynamicIcon()
+    }
+  }
+
   getPostDate = () => {
     let elapsed = (new Date().getTime()) - ((new Date(this.props.post.created * 1000)).getTime())
 
@@ -18,39 +24,18 @@ class PostItem extends React.Component {
   }
 
   dynamicIcon = () => {
-
     return <i class={this.selectIcon()} id={this.props.post.id}  onClick={this.props.onToggleFavoriteState} />
-    // if (!!this.props.favorited) {
-    //   if (this.props.location.pathname.slice(1) == "feed") {
-    //     return <i class= ></i>
-    //     } else {
-    //       return <i class=></i>
-    //     }
-    // } else {
-    //   return <i class="" id={this.props.post.id} onClick={this.props.onToggleFavoriteState}></i>
-    // }
   }
 
   selectIcon = () => {
     if (!!this.props.favorited) {
       if (this.props.location.pathname.slice(1) == "feed") {
-        return "fas fa-heart favorited icon"
+        return "fas fa-heart favorited fav-icon"
       } else {
-        return "far fa-trash-alt icon"
+        return "far fa-trash-alt fav-icon"
       }
     } else {
-      return "fas fa-heart nonfavorite icon"
-    }
-  }
-
-
-
-
-
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.favorited != this.props.favorited) {
-      this.dynamicIcon()
+      return "fas fa-heart nonfavorite fav-icon"
     }
   }
 

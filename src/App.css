@@ -107,17 +107,38 @@ i {
   /* justify-content: flex-start; */
 }
 
-.icon {
+i.fav-icon {
   position: absolute;
   z-index: 100;
   /* display: inline-flex; */
   display: none;
+  margin: 2px;
+  padding: 8px;
   /* justify-content: flex-start; */
 }
 
-.post-item-wrapper:hover .icon {
+.post-item-wrapper:hover .fav-icon {
   display:inline-flex;
+
 }
+
+i.favorited {
+  animation-name: favorited;
+  animation-direction: normal;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;;
+}
+
+@keyframes favorited {
+    from  {left: 0%; width: content;}
+    to {left: 460px; width: content;}
+}
+
+
+
+
+
 
 i.favorited {
 
