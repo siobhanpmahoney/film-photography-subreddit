@@ -95,6 +95,10 @@ body {
 
 }
 
+.embedly-embed {
+  height: 350px !important;
+}
+
 i {
   position: absolute;
   z-index: 100;

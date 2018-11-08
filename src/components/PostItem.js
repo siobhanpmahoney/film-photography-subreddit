@@ -54,8 +54,25 @@ class PostItem extends React.Component {
     }
   }
 
+   decode = (input) => {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = input;
+    return txt.value;
+  }
+
+  videoEmbed = () => {
+    console.log("regular: ", this.props.post.secure_media_embed.content)
+    console.log("passed through decode function", this.decode(this.props.post.secure_media_embed.content))
+      return {
+        __html: this.decode(this.props.post.secure_media_embed.content)
+      }
+
+  }
+
+
   render() {
     let {post} = this.props
+
 
 
     return (
@@ -64,43 +81,52 @@ class PostItem extends React.Component {
         <div className="post-item-content">
           <div className="post-item-image">
             {this.dynamicIcon()}
-            <img className="img-element" src={this.props.post.url} alt="Img" />
-          </div>
+            {post.post_hint == "image" ? (
+              <img className="img-element" src={this.props.post.url} alt="Img" />
+            ) : (
+              <div className="img-element" dangerouslySetInnerHTML={this.videoEmbed()} />
+            )
+          }
 
-          <div className="post-item-text">
-            <div className="post-item-title">
-              {this.props.post.title}
-            </div>
 
-            <div className="post-item-metadata">
-              <span className="post-item-author">
-                <i className="fas fa-user metadata-icon"></i>
-                <span className="post-item-metadata-detail">
-                  /u/{post.author}
-                </span>
-              </span>
 
-              <span className="post-item-time">
-                <i class="far fa-clock metadata-icon"></i>
-                <span className="post-item-metadata-detail">
-                  {this.getPostDate()}
-                </span>
-              </span>
 
-              <span className="post-item-likes">
-                <i class="fas fa-bolt metadata-icon"></i>
-                <span className="post-item-metadata-detail">
-                  {post.ups}
-                </span>
-              </span>
-
-            </div>
-          </div>
         </div>
 
+        <div className="post-item-text">
+          <div className="post-item-title">
+            {this.props.post.title}
+          </div>
+
+          <div className="post-item-metadata">
+            <span className="post-item-author">
+              <i className="fas fa-user metadata-icon"></i>
+              <span className="post-item-metadata-detail">
+                /u/{post.author}
+              </span>
+            </span>
+
+            <span className="post-item-time">
+              <i class="far fa-clock metadata-icon"></i>
+              <span className="post-item-metadata-detail">
+                {this.getPostDate()}
+              </span>
+            </span>
+
+            <span className="post-item-likes">
+              <i class="fas fa-bolt metadata-icon"></i>
+              <span className="post-item-metadata-detail">
+                {post.ups}
+              </span>
+            </span>
+
+          </div>
+        </div>
       </div>
-    )
-  }
+
+    </div>
+  )
+}
 }
 
 export default withRouter(PostItem)
