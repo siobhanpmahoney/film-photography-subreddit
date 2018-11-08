@@ -32,15 +32,15 @@ class PostItem extends React.Component {
   }
 
   selectIcon = () => {
-      if (!!this.props.favorited) {
-          if (this.props.location.pathname.slice(1) == "feed") {
-            return "fas fa-heart favorited icon"
-          } else {
-            return "far fa-trash-alt icon"
-          }
+    if (!!this.props.favorited) {
+      if (this.props.location.pathname.slice(1) == "feed") {
+        return "fas fa-heart favorited icon"
       } else {
-        return "fas fa-heart nonfavorite icon"
+        return "far fa-trash-alt icon"
       }
+    } else {
+      return "fas fa-heart nonfavorite icon"
+    }
   }
 
 
@@ -74,11 +74,26 @@ class PostItem extends React.Component {
 
             <div className="post-item-metadata">
               <span className="post-item-author">
-                {post.author} |
+                <i className="fas fa-user metadata-icon"></i>
+                <span className="post-item-metadata-detail">
+                  /u/{post.author}
+                </span>
               </span>
+
               <span className="post-item-time">
-                {this.getPostDate()}
+                <i class="far fa-clock metadata-icon"></i>
+                <span className="post-item-metadata-detail">
+                  {this.getPostDate()}
+                </span>
               </span>
+
+              <span className="post-item-likes">
+                <i class="fas fa-bolt metadata-icon"></i>
+                <span className="post-item-metadata-detail">
+                  {post.ups}
+                </span>
+              </span>
+
             </div>
           </div>
         </div>
