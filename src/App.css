@@ -2,6 +2,7 @@ body {
   height: 100%;
   /* width: 100%; */
   position: relative;
+  margin: 0px !important;
 }
 
 .App {
@@ -148,6 +149,7 @@ ul.nav__list {
   margin-block-end: 0px !important;
   margin-block-start: 0px !important;
   padding-inline-start: 0px !important;
+  border-bottom: lightgrey 1px solid
 }
 
  li {
@@ -165,12 +167,14 @@ li.nav__list-item {
   color: #57a2e4 !important;
   font: "Helvetica";
 
+
 }
 
 li.nav__list-item--active {
   background-color: #57a2e4;
   color: white !important;
   font: "Helvetica";
+    text-decoration: none;
 }
 
 li.nav__list-item--active a.nav__list-item__link:visited {
@@ -179,6 +183,11 @@ li.nav__list-item--active a.nav__list-item__link:visited {
   font: "Helvetica";
   font-size: 16px;
   width: 50px;
+    text-decoration: none;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 li.nav__list-item a.nav__list-item__link:visited {
@@ -239,4 +248,9 @@ li.nav__list-item a.nav__list-item__link:visited {
   margin: 0px 10px;
   position:relative;
   display: inline
+}
+
+.navIcon {
+  /* margin: 0px 3px 0px 0px; */
+  position: relative;
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
+import ls from 'local-storage'
+
 
 const NavListItem = ({ to, children }) => {
   return (
@@ -18,11 +20,28 @@ const NavListItem = ({ to, children }) => {
 export default function NavList({ list }) {
   return (
     <ul className="nav__list">
-      { list.map(({ text, to }) => (
+      { list.map(({ text, icon, to }) => (
         <NavListItem key={text} to={to}>
-          { text }
+          <i className={`${icon} navIcon`}></i> { text }
         </NavListItem>
       ))}
     </ul>
   )
 }
+
+//
+// const createNavLink = (icon, text) => {
+//   return <span><i className={icon}></i>{text}</span>
+// }
+//
+// export default function NavList({ list }) {
+//   return (
+//     <ul className="nav__list">
+//       { list.map(({ text, icon, to }) => (
+//         <NavListItem key={text} to={to}>
+//           {createNavLink(icon, text)}
+//         </NavListItem>
+//       ))}
+//     </ul>
+//   )
+// }

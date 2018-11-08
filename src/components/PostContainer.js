@@ -72,6 +72,7 @@ class PostContainer extends React.Component {
     })
     ls.set('favorites', favoritesState)
     ls.set('favoriteList', favoriteListState)
+    this.props.updateFavCount()
   }
 
 
