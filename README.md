@@ -25,10 +25,6 @@ When either endpoint is accessed via the NavBar links, `favorites` and `favorite
 
 Using `withRouter` to key into the component's state, the appropriate group of posts gets passed to the `PostList` as the `posts` prop.
 
-Regardless of the page's route, `PostList` also is passed `favoriteList` as a prop. When mapping over `props.posts` and rendering each item with the `PostItem` component, will pass a `favorited` prop in addition to post data. `PostItem` will use the `favorited` prop to render the appropriate heart icon based on whether the post has been favorited.
+For both routes, `PageContainer` passes `PostList` `favoriteList` as a prop. When mapping over `props.posts` and rendering each item with the `PostItem` component, `PostList` will pass a `favorited` prop in addition to post data, which `PostItem` will use to render the appropriate icon and `onClick` event based on whether the post has been added to the user's favorite list.
 
-
-The `feed` state is passed to the `PostList` presentational component, which maps over the array, passing each item to the `PostItem` component, which renders the item.
-
-
-  When a user toggles between the state and country endpoints, the information displayed on the page updates via the `componentDidUpdate()` lifecycle method, which compares the current and previous route location and clears and resets `Container`'s `items` state. The comparison of route locations is accomplished by wrapping the `Container` component in react-router's `withRouter` higher order component, providing the component with access to the route location via the `location` prop.
+## Adding and Removing Posts from Favorite List
