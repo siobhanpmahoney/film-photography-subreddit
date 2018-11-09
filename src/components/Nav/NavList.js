@@ -16,7 +16,7 @@ const NavListItem = ({ to, children }) => {
         </li>
       )}
     />
-  );
+  )
 };
 
 export default function NavList({ list }) {
