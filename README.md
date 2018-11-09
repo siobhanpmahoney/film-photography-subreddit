@@ -1,6 +1,6 @@
 # /r/analog Feed
 
-Checkout the live demo [here](film-photography-subreddit.herokuapp.com/feed)! 
+Checkout the live demo [here](film-photography-subreddit.herokuapp.com)!
 
 This app provides a feed of images posted to the /r/analog Subreddit Feed. Users can browse the top posts and track their favorites, which are persisted to local storage and available upon refreshing or reopening the browser.
 
@@ -8,7 +8,7 @@ This app provides a feed of images posted to the /r/analog Subreddit Feed. Users
 ## Routes Overview
 Routes are defined for the pages displaying the top post feed (`/feed`) and the user's list of favorite posts (`/favorites`). Using react-router's `Redirect`, the user will be redirected to `/feed` if the path entered does not match any of the above defined routes.
 
-The `/feed` and `/favorites` routes are passed 2 props: the number of favorited posts and a string that will be rendered as a page title.
+The `/feed` and `/favorites` routes are passed the number of favorited posts as a prop.
 
 ## Data Retrieval and Storage
 
