@@ -176,10 +176,14 @@ ul.nav__list {
   padding-inline-start: 0px !important;
   border-bottom: lightgrey 1px solid;
   display: flex;
+  justify-content: stretch
+
 }
 
 li {
-  padding: 12px 26px;
+  padding: 12px 18px;
+  text-align: left;
+  length: 80px;
 }
 
 li.nav__list-item--active a.nav__list-item__link:visited, li.nav__list-item, li.nav__list-item--active, .post-item-metadata {
@@ -201,7 +205,7 @@ li.nav__list-item--active {
   background-color: #57a2e4;
   color: white !important;
   font-size: 16px;
-  width: 50px;
+  width: 60px;
 
 }
 
@@ -216,6 +220,10 @@ li.nav__list-item a.nav__list-item__link:visited {
 
 .navIcon {
   position: relative;
+}
+
+.nav__list-item__link {
+  color: #57a2e4 !important;
 }
 
 

@@ -12,6 +12,7 @@ const NavListItem = ({ to, children }) => {
           <Link className="nav__list-item__link" to={to}>
             {children}
           </Link>
+          
         </li>
       )}
     />

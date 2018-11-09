@@ -2,7 +2,7 @@ import React from "react";
 import NavList from "./NavList";
 
 class NavBar extends React.Component {
-  
+
   componentDidUpdate(prevProps) {
     if (prevProps.favCount != this.props.favCount) {
       return this.favCount();
@@ -19,7 +19,8 @@ class NavBar extends React.Component {
         <NavList
           list={[
             { to: "/feed", icon: "fab fa-reddit-alien", text: `/r/analog` },
-            { to: "/favorites", icon: "fas fa-heart", text: `Favorites (${this.favCount()})` }
+            { to: "/favorites", icon: "fas fa-heart", text: `Favorites (${this.favCount()})` },
+            { to: "https://github.com/siobhanpmahoney/film-photography-subreddit", icon:"fab fa-github", text: "Code"}
           ]}
         />
       </nav>
