@@ -1,6 +1,6 @@
 # /r/analog Feed
 
-Checkout the live demo [here](film-photography-subreddit.herokuapp.com)!
+Checkout the live demo [here](https://film-photography-subreddit.herokuapp.com/feed)!
 
 This app provides a feed of images posted to the /r/analog Subreddit Feed. Users can browse the top posts and track their favorites, which are persisted to local storage and available upon refreshing or reopening the browser.
 
