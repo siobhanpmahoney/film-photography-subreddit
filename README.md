@@ -1,45 +1,23 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# /r/analog Feed
 
-## Available Scripts
+This app provides a feed of images posted to the /r/analog Subreddit Feed. Users can browse the top posts and track their favorites, which are persisted to local storage and available upon refreshing or reopening the browser.
 
-In the project directory, you can run:
 
-### `npm start`
+## Routes Overview
+Routes are defined for the pages displaying the top post feed (`/feed`) and the user's list of favorite posts (`/favorites`). Using react-router's `Redirect`, the user will be redirected to `/feed` if the path entered does not match any of the above defined routes.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The `/feed` and `/favorites` routes are passed 2 props: the a function defined `/component/posts` that fetches the respective group of posts (`fetchFn()`), and a string that will be rendered as a page title.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Data Retrieval and Storage
 
-### `npm test`
+Posts rendered in `/feed` are sourced from a Reddit API endpoint(`https://www.reddit.com/r/analog/top/.json`), posts listed in `/favorite` are retrieved from local storage.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Component Architecture and Flow Overview
+Both posts fetched from the  are rendered with the same component tree: `PostContainer`, `PostList`, and `PostItem`, all of which are housed in the top level of the `/components` directory.
 
-### `npm run build`
+### PostContainer `state`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# film-photography-subreddit
+`PostContainer` holds 3 pieces of state:
+1. `feed: []`: an array of posts sourced from Reddit's API
+2. `favorites: []`: an array of the user's favorite posts retrieved from local storage
+3. `favoriteList: {}`: an object storing favorite posts as keys retrieved from local storage

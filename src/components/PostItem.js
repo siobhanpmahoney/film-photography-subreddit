@@ -24,7 +24,7 @@ class PostItem extends React.Component {
   }
 
   dynamicIcon = () => {
-    return <i class={this.selectIcon()} id={this.props.post.id}  onClick={this.props.onToggleFavoriteState} />
+    return <i className={this.selectIcon()} id={this.props.post.id}  onClick={this.props.onToggleFavoriteState} />
   }
 
   selectIcon = () => {
@@ -32,25 +32,23 @@ class PostItem extends React.Component {
       if (this.props.location.pathname.slice(1) == "feed") {
         return "fas fa-heart favorited fav-icon"
       } else {
-        return "far fa-trash-alt fav-icon"
+        return "far fa-trash-alt delete-favorite fav-icon"
       }
     } else {
       return "fas fa-heart nonfavorite fav-icon"
     }
   }
 
-   decode = (input) => {
+  decode = (input) => {
     var txt = document.createElement("textarea");
     txt.innerHTML = input;
     return txt.value;
   }
 
   videoEmbed = () => {
-    console.log("regular: ", this.props.post.secure_media_embed.content)
-    console.log("passed through decode function", this.decode(this.props.post.secure_media_embed.content))
-      return {
-        __html: this.decode(this.props.post.secure_media_embed.content)
-      }
+    return {
+      __html: this.decode(this.props.post.secure_media_embed.content)
+    }
 
   }
 
@@ -67,20 +65,16 @@ class PostItem extends React.Component {
           <div className="post-item-image">
             {this.dynamicIcon()}
             {post.post_hint == "image" ? (
-              <img className="img-element" src={this.props.post.url} alt="Img" />
+              <img className="img-element" src={post.url} alt="Img" />
             ) : (
               <div className="img-element" dangerouslySetInnerHTML={this.videoEmbed()} />
             )
           }
-
-
-
-
         </div>
 
         <div className="post-item-text">
           <div className="post-item-title">
-            {this.props.post.title}
+            {post.title}
           </div>
 
           <div className="post-item-metadata">
@@ -92,14 +86,14 @@ class PostItem extends React.Component {
             </span>
 
             <span className="post-item-time">
-              <i class="far fa-clock metadata-icon"></i>
+              <i className="far fa-clock metadata-icon"></i>
               <span className="post-item-metadata-detail">
                 {this.getPostDate()}
               </span>
             </span>
 
             <span className="post-item-likes">
-              <i class="fas fa-bolt metadata-icon"></i>
+              <i className="fas fa-bolt metadata-icon"></i>
               <span className="post-item-metadata-detail">
                 {post.ups}
               </span>
@@ -108,7 +102,6 @@ class PostItem extends React.Component {
           </div>
         </div>
       </div>
-
     </div>
   )
 }

@@ -25,7 +25,7 @@ class PostContainer extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.location.pathname !== this.props.location.pathname) {
-      this.updateList()
+      this.fetchPosts()
     }
     if (prevProps.favoriteList != this.props.favoriteList) {
       this.fetchPosts()
@@ -33,12 +33,15 @@ class PostContainer extends React.Component {
   }
 
   fetchPosts = () => {
-    this.props.fetchFn()
-    .then(json => {
-      this.setState({
-        feed: json
+    if (this.props.location.pathname == "/feed") {
+      this.props.fetchFn()
+      .then(json => {
+        this.setState({
+          feed: json
+        })
       })
-    })
+    }
+
   }
 
   updateList() {

@@ -19,12 +19,6 @@ class App extends Component {
     this.updateFavCount()
   }
 
-  // componentDidUpdate(prevState) {
-  //   if (prevState.favCount != this.state.favCount) {
-  //     return this.state.favCount
-  //   }
-  // }
-
   updateFavCount = () => {
     this.setState({
       favCount: ls.get('favorites').length
