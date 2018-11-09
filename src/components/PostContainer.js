@@ -1,5 +1,6 @@
 import React from 'react'
 import PostList from './PostList'
+import {fetchFeed} from '../posts'
 import ls from 'local-storage'
 import {withRouter} from 'react-router'
 
@@ -34,7 +35,7 @@ class PostContainer extends React.Component {
 
   fetchPosts = () => {
     if (this.props.location.pathname == "/feed") {
-      this.props.fetchFn()
+      fetchFeed()
       .then(json => {
         this.setState({
           feed: json

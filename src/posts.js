@@ -1,5 +1,5 @@
 import React from 'react'
-import ls from 'local-storage'
+// import ls from 'local-storage'
 
 
 export const fetchFeed = () => {
@@ -10,11 +10,11 @@ export const fetchFeed = () => {
   })
 
 }
-
-export const fetchFavorites = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(ls.get("favorites"))
-    }, 200)
-  })
-}
+//
+// export const fetchFavorites = () => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(ls.get("favorites"))
+//     }, 200)
+//   })
+// }

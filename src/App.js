@@ -35,11 +35,11 @@ class App extends Component {
 
 
         <Route exact path='/feed' render={() => {
-          return <PostContainer fetchFn={fetchFeed} updateFavCount={this.updateFavCount}/> }}
+          return <PostContainer updateFavCount={this.updateFavCount}/> }}
         />
 
         <Route exact path='/favorites' render={() => {
-          return <PostContainer fetchFn={fetchFavorites} updateFavCount={this.updateFavCount}/> }}
+          return <PostContainer updateFavCount={this.updateFavCount}/> }}
         />
 
         <Redirect to='/feed' />
