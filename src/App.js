@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router'
+import ls from 'local-storage'
 import './App.css';
-import {fetchFeed, fetchFavorites} from './posts'
 import PostContainer from './components/PostContainer'
 import NavBar from './components/Nav/NavBar'
-import ls from 'local-storage'
+
 
 class App extends Component {
   constructor(props) {

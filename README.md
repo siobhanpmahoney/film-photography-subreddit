@@ -26,5 +26,3 @@ When either endpoint is accessed via the NavBar links, `favorites` and `favorite
 Using `withRouter` to key into the component's state, the appropriate group of posts gets passed to the `PostList` as the `posts` prop.
 
 For both routes, `PageContainer` passes `PostList` `favoriteList` as a prop. When mapping over `props.posts` and rendering each item with the `PostItem` component, `PostList` will pass a `favorited` prop in addition to post data, which `PostItem` will use to render the appropriate icon and `onClick` event based on whether the post has been added to the user's favorite list.
-
-## Adding and Removing Posts from Favorite List

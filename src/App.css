@@ -17,7 +17,7 @@ li.nav__list-item--active, .nonfavorite, .delete-favorite {
 }
 
 
-.img-element,  {
+.img-element {
   display:  inline-flex;
 }
 
@@ -99,11 +99,9 @@ i {
 i.fav-icon {
   position: absolute;
   z-index: 100;
-  /* display: inline-flex; */
   display: none;
   margin: 2px;
   padding: 8px;
-  /* justify-content: flex-start; */
 }
 
 .post-item-wrapper:hover .fav-icon {
@@ -135,10 +133,7 @@ i.favorited {
   justify-content: flex-end;
   align-content: flex-end;
   align-self: flex-end;
-  /* align-items: flex-end; */
-  /* flex-flow: row nowrap; */
   display: inline-flex;
-  /* background-color: #f48782; */
 }
 
 
@@ -215,6 +210,8 @@ li.nav__list-item a.nav__list-item__link:visited {
 .fas .fa-user, .post-item-metadata {
   color: #999;
 }
+
+
 
 
 .post-item-metadata {
