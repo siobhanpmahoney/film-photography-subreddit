@@ -71,19 +71,26 @@ class PostContainer extends React.Component {
     });
     ls.set("favorites", favoritesState);
     ls.set("favoriteList", favoriteListState);
-    this.props.updateFavCount(); // function called to update favorite count in NavBar 
+    this.props.updateFavCount(); // function called to update favorite count in NavBar
   };
 
   render() {
-    return (
-      <div className="post-container">
-        <PostList
-          posts={this.state[this.props.location.pathname.slice(1)]}
-          onToggleFavoriteState={this.onToggleFavoriteState}
-          favoriteList={this.state.favoriteList}
-          />
-      </div>
-    );
+
+      if (this.state.feed.length > 1 || this.state.favorites.length > 1) {
+            return (
+              <div className="post-container">
+                <PostList
+                  posts={this.state[this.props.location.pathname.slice(1)]}
+                  onToggleFavoriteState={this.onToggleFavoriteState}
+                  favoriteList={this.state.favoriteList}
+                  />
+              </div>
+            )
+      } else {
+        return <div>Loading..</div>
+      }
+
+
   }
 }
 

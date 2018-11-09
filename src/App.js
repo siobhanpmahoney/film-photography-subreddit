@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router'
 import ls from 'local-storage'
 import './App.css';
+import Home from './components/Home'
+
 import PostContainer from './components/PostContainer'
 import NavBar from './components/Nav/NavBar'
 
@@ -20,8 +22,14 @@ class App extends Component {
   }
 
   updateFavCount = () => {
+    let count
+    if (!!ls.get('favorites')) {
+       count = ls.get('favorites').length
+    } else {
+       count = 0
+    }
     this.setState({
-      favCount: ls.get('favorites').length
+      favCount: count
     })
   }
 
@@ -33,9 +41,12 @@ class App extends Component {
 
         <Switch>
 
+          <Route exact path='/' render={(routerProps) => {
+            return <Home history={routerProps.history} /> }}
+          />
 
-        <Route exact path='/feed' render={() => {
-          return <PostContainer updateFavCount={this.updateFavCount}/> }}
+        <Route exact path='/feed' render={(routerProps) => {
+          return <PostContainer history={routerProps.history} updateFavCount={this.updateFavCount}/> }}
         />
 
         <Route exact path='/favorites' render={() => {
