@@ -9,36 +9,21 @@ class PostItem extends React.Component {
     }
   }
 
-  getPostDate = () => {
-    let elapsed =
-      new Date().getTime() - new Date(this.props.post.created * 1000).getTime();
 
-    // if (elapsed < 60000) {
-    //   return "Just Now";
-    //
-    // } else if (elapsed >= 60000 && elapsed < 3600000) {
-    //   return `${parseInt(elapsed / 60000)} minutes ago`;
-    //
-    // } else if (elapsed >= 3600000 && elapsed < 86400000) {
-    //   return `${parseInt(elapsed / 3600000)} hours ago`;
-    //
-    // } else if (elapsed >= 86400000) {
-    //   return `${parseInt(elapsed / 86400000)} days ago`;
-    //
-    // }
+  // helper method for rendering the timestamp posted as the difference between current time and time of post
+  getTimeStamp = () => {
+    let elapsed = new Date().getTime() - new Date(this.props.post.created * 1000).getTime();
 
     switch(true) {
       case elapsed < 60000:
-        return "Just Now";
+      return "Just Now";
       case elapsed >= 60000 && elapsed < 3600000:
-        return `${parseInt(elapsed / 60000)} minutes ago`;
-
+      return `${parseInt(elapsed / 60000)} minutes ago`;
       case elapsed >= 3600000 && elapsed < 86400000:
-        return `${parseInt(elapsed / 3600000)} hours ago`
-
+      return `${parseInt(elapsed / 3600000)} hours ago`;
       case elapsed >= 86400000:
-        return `${parseInt(elapsed / 86400000)} days ago`
-        break
+      return `${parseInt(elapsed / 86400000)} days ago`;
+      break
     }
 
   };
@@ -49,10 +34,11 @@ class PostItem extends React.Component {
         className={this.selectIcon()}
         id={this.props.post.id}
         onClick={this.props.onToggleFavoriteState}
-      />
+        />
     );
   };
 
+  // helper function for rendering correct icon
   selectIcon = () => {
     if (!!this.props.favorited) {
       if (this.props.location.pathname.slice(1) == "feed") {
@@ -65,17 +51,21 @@ class PostItem extends React.Component {
     }
   };
 
+
+  // handles rendering media for video posts
+  videoEmbed = () => {
+    return {
+      __html: this.decode(this.props.post.secure_media_embed.content)
+    };
+  };
+
+  // helper method to unpack iframe HTML element to render in jsx
   decode = input => {
     var txt = document.createElement("textarea");
     txt.innerHTML = input;
     return txt.value;
   };
 
-  videoEmbed = () => {
-    return {
-      __html: this.decode(this.props.post.secure_media_embed.content)
-    };
-  };
 
   render() {
     let { post } = this.props;
@@ -91,7 +81,7 @@ class PostItem extends React.Component {
               <div
                 className="img-element"
                 dangerouslySetInnerHTML={this.videoEmbed()}
-              />
+                />
             )}
           </div>
 
@@ -109,7 +99,7 @@ class PostItem extends React.Component {
               <span className="post-item-time">
                 <i className="far fa-clock metadata-icon" />
                 <span className="post-item-metadata-detail">
-                  {this.getPostDate()}
+                  {this.getTimeStamp()}
                 </span>
               </span>
 
