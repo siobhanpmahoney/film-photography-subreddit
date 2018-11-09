@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router'
 import ls from 'local-storage'
 import './App.css';
-import Home from './components/Home'
-
-import PostContainer from './components/PostContainer'
-import NavBar from './components/Nav/NavBar'
+import Home from './components/Home';
+import PostContainer from './components/PostContainer';
+import NavBar from './components/Nav/NavBar';
 
 
 class App extends Component {
@@ -36,7 +35,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <NavBar favCount={this.state.favCount}/>
 
         <Switch>
@@ -45,15 +44,15 @@ class App extends Component {
             return <Home history={routerProps.history} /> }}
           />
 
-        <Route exact path='/feed' render={(routerProps) => {
-          return <PostContainer history={routerProps.history} updateFavCount={this.updateFavCount}/> }}
-        />
+          <Route exact path='/feed' render={(routerProps) => {
+            return <PostContainer history={routerProps.history} updateFavCount={this.updateFavCount}/> }}
+          />
 
-        <Route exact path='/favorites' render={() => {
-          return <PostContainer updateFavCount={this.updateFavCount}/> }}
-        />
+          <Route exact path='/favorites' render={() => {
+            return <PostContainer updateFavCount={this.updateFavCount}/> }}
+          />
 
-        <Redirect to='/feed' />
+          <Redirect to='/feed' />
 
         </Switch>
 

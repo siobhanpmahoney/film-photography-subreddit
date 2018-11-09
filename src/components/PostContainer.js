@@ -1,8 +1,8 @@
-import React from "react";
-import PostList from "./PostList";
-import { fetchFeed } from "../fetchFeed";
-import ls from "local-storage";
-import { withRouter } from "react-router";
+import React from 'react';
+import PostList from './PostList';
+import { fetchFeed } from '../fetchFeed';
+import ls from 'local-storage';
+import { withRouter } from 'react-router';
 
 class PostContainer extends React.Component {
   constructor(props) {
@@ -15,11 +15,11 @@ class PostContainer extends React.Component {
     };
   }
 
-// on mount, the the user's favorite posts are saved to state as an array of post data and an object containing favorited post ids as keys
+  // on mount, the the user's favorite posts are saved to state as an array of post data and an object containing favorited post ids as keys
   componentDidMount() {
     this.setState({
-      favoriteList: ls.get("favoriteList") || {},
-      favorites: ls.get("favorites") || []
+      favoriteList: ls.get('favoriteList') || {},
+      favorites: ls.get('favorites') || []
     }, this.fetchPosts);
   }
 
@@ -34,7 +34,7 @@ class PostContainer extends React.Component {
   }
 
   fetchPosts = () => {
-    if (this.props.location.pathname == "/feed") {
+    if (this.props.location.pathname == '/feed') {
       fetchFeed().then(json => {
         this.setState({
           feed: json
@@ -44,7 +44,7 @@ class PostContainer extends React.Component {
   };
 
 
-// function that handles the addition or deletion of post from favorite list
+  // function that handles the addition or deletion of post from favorite list
   onToggleFavoriteState = event => {
     let post_id = event.target.id;
     let favoriteListState = Object.assign({}, this.state.favoriteList);
@@ -52,7 +52,7 @@ class PostContainer extends React.Component {
     let feedState = this.state.feed.splice(0) || [];
 
 
-// checks to see if post has been been added as a favorite by keying into state.favoriteList using post_id
+    // checks to see if post has been been added as a favorite by keying into state.favoriteList using post_id
     if (!favoriteListState[post_id]) {
       let selectedPost = feedState.find(p => p.id == post_id);
       favoritesState.unshift(selectedPost); // post data gets added to copy of state.favorites
@@ -69,28 +69,22 @@ class PostContainer extends React.Component {
       favorites: favoritesState,
       favoriteList: favoriteListState
     });
-    ls.set("favorites", favoritesState);
-    ls.set("favoriteList", favoriteListState);
+    ls.set('favorites', favoritesState);
+    ls.set('favoriteList', favoriteListState);
     this.props.updateFavCount(); // function called to update favorite count in NavBar
   };
 
   render() {
 
-      if (this.state.feed.length > 1 || this.state.favorites.length > 1) {
-            return (
-              <div className="post-container">
-                <PostList
-                  posts={this.state[this.props.location.pathname.slice(1)]}
-                  onToggleFavoriteState={this.onToggleFavoriteState}
-                  favoriteList={this.state.favoriteList}
-                  />
-              </div>
-            )
-      } else {
-        return <h3 className="no-fav-message">Loading..</h3>
-      }
-
-
+    if (this.state.feed.length > 0 || this.state.favorites.length > 0) {
+      return (
+        <div className='post-container'>
+          <PostList posts={this.state[this.props.location.pathname.slice(1)]} onToggleFavoriteState={this.onToggleFavoriteState} favoriteList={this.state.favoriteList} />
+        </div>
+      )
+    } else {
+      return <h3 className='no-fav-message'>Loading..</h3>
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import PostContainer from "./PostContainer";
-import { Redirect } from 'react-router'
+import PostContainer from './PostContainer';
+import { Redirect } from 'react-router';
 
 
 const Home = (props) => {
