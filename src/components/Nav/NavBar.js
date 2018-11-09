@@ -19,7 +19,7 @@ class NavBar extends React.Component {
           list={[
             { to: '/feed', icon: 'fab fa-reddit-alien', text: `/r/analog` },
             { to: '/favorites', icon: 'fas fa-heart', text: `Favorites (${this.favCount()})` },
-      
+    
           ]}
         />
       </nav>

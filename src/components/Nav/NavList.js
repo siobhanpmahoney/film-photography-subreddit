@@ -12,7 +12,6 @@ const NavListItem = ({ to, children }) => {
           <Link className='nav__list-item__link' to={to}>
             {children}
           </Link>
-
         </li>
       )}
     />
@@ -27,6 +26,13 @@ export default function NavList({ list }) {
           <i className={`${icon} navIcon`} /> {text}
         </NavListItem>
       ))}
+      <li className='nav__list-item'>
+
+          <a className="nav__list-item__link" href="https://github.com/siobhanpmahoney/film-photography-subreddit" target="_blank">
+            <i className="fab fa-github navIcon" /> Code
+          </a>
+
+      </li>
     </ul>
   );
 }
