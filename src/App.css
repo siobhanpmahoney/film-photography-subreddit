@@ -41,6 +41,13 @@ li.nav__list-item--active, .nonfavorite, .delete-favorite {
   display: flex;
 }
 
+.no-fav-message {
+  color: #999;
+  margin: 24px;
+  text-align: center;
+  font-family: "Arvo";
+}
+
 .post-item-wrapper {
   margin: 24px 0px;
   width: 100%;
@@ -142,13 +149,22 @@ i.favorited {
 }
 
 .post-item-title {
-  font-family: "Arvo";
-  font-size: 18px;
-  line-height: 24px;
+
   padding: 16px 0px;
   margin: 16px 0px;
   text-align: center;
+}
 
+.post-item-title a {
+  font-family: "Arvo";
+  font-size: 18px;
+  line-height: 24px;
+  color: black !important;
+}
+
+.post-item-title a:hover {
+  color: #57a2e4 !important;
+  text-decoration: none !important;
 }
 
 ul.nav__list {
@@ -167,7 +183,7 @@ li {
 }
 
 li.nav__list-item--active a.nav__list-item__link:visited, li.nav__list-item, li.nav__list-item--active, .post-item-metadata {
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Helvetica","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 
 

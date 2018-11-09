@@ -3,7 +3,7 @@ import PostItem from "./PostItem";
 
 const PostList = props => {
   if (props.posts.length == 0) {
-    return <h3>No posts have been added to favorites... yet! </h3>
+    return <h3 className="no-fav-message">No posts have been added to favorites... yet! </h3>
   } else {
     return (
       <div className="post-list">

@@ -87,7 +87,7 @@ class PostContainer extends React.Component {
               </div>
             )
       } else {
-        return <div>Loading..</div>
+        return <h3 className="no-fav-message">Loading..</h3>
       }
 
 

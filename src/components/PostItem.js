@@ -86,14 +86,15 @@ class PostItem extends React.Component {
           </div>
 
           <div className="post-item-text">
-            <div className="post-item-title">{post.title}</div>
+            <div className="post-item-title">
+              <a href={post.url} target="_blank">{post.title}</a></div>
 
             <div className="post-item-metadata">
               <span className="post-item-author">
                 <i className="fas fa-user metadata-icon" />
-                <span className="post-item-metadata-detail">
+                <a className="post-item-metadata-detail">
                   /u/{post.author}
-                </span>
+                </a>
               </span>
 
               <span className="post-item-time">
